@@ -112,11 +112,14 @@ public class IndexDirectoryBuilder {
 		
 		logger.info("[DONE]");
 		logger.info(indexWriter.maxDoc() + " geonames added to index.");
+		logger.info("Merging indices... please wait.");
 		
 		indexWriter.close();
 		index.close();
 		r.close();
 		r2.close();
+		
+		logger.info("[DONE]");
 		
 		DateFormat df = new SimpleDateFormat("HH:mm:ss");
 		long elapsed_MILLIS = stop.getTime() - start.getTime();
