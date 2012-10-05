@@ -1,16 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>CLAVIN – Berico Technologies</title>
 <style type="text/css">
-body {text-align:center;}
-h1 {font-family:"Courier New", Courier, serif;}
+body {text-align:center; font-family:"Courier New", Courier, serif;}
+p.blurb {text-align:justify; width:50%; margin-left:auto; margin-right:auto;}
+p.news {text-align:justify; width:48%; margin-left:auto; margin-right:auto; background-color:#FF9933; padding:10px; margin-bottom:30px;}
+p.copyright {font-size:small; text-align:center; width:50%; margin-left:auto; margin-right:auto;}
+a:link {color:#CC6633;}
+a:visited {color:#CC6633;}
+a:hover {color:#CC6633;}
+a:active {color:#CC6633;}
 </style>
+<meta name="description" content="CLAVIN is an open source software package for context-based geographic entity resolution.">
+<meta name="keywords" content="CLAVIN, Berico, geospatial, analytics, unstructured, big data, GIS, NLP, entity, extraction, resolution, geotag">
 </head>
 <body>
 
-<img src="clavin_logo.png" alt="CLAVIN logo" width="50%"/>
+<img src="images/clavin_logo.png" alt="CLAVIN logo" width="50%" />
+<br />
+<a href="http://ec2-23-22-172-90.compute-1.amazonaws.com:8080/clavin-web/"><img src="images/demo-button.png" alt="demo button" /></a>
+<a href="https://github.com/Berico-Technologies/CLAVIN"><img src="images/download-button.png" alt="download button" /></a>
 
+<!--
 <h1>10.9.12</h1>
+-->
+
+<p class="blurb">CLAVIN (<em>Cartographic Location And Vicinity INdexer</em>) is an <a href="https://github.com/Berico-Technologies/CLAVIN/blob/master/LICENSE">open source</a> software package for context-based geographic entity resolution.</p>
+
+<p class="blurb">It extracts location names from unstructured text and resolves them against a <a href="http://www.geonames.org">gazetteer</a> to produce data-rich geographic entities.</p>
+
+<p class="blurb">CLAVIN does not simply "look up" location names – it uses intelligent heuristics to identify exactly which "Springfield" (for example) was intended by the author, based on the context of the document. CLAVIN also employs fuzzy search to handle incorrectly-spelled location names, and it recognizes alternative names (e.g., "Ivory Coast" and "Côte d'Ivoire") as referring to the same geographic entity.</p>
+
+<p class="blurb">By enriching text documents with structured geo data, CLAVIN enables hierarchical geospatial search and advanced geospatial analytics on unstructured data.</p>
+
+<h2>Attention GEOINT 2012 attendees!</h2>
+<p class="news">Come visit us at <strong>Booth 337</strong> (in the back near the Internet cafe) and don't miss Charlie's talk about CLAVIN on Tuesday, Oct. 9 at the Innovation Pavilion during the 2:30-4:00pm tech talk session.</p>
+
+<p class="blurb">We're hoping to give a talk at <a href="http://strataconf.com/strata2013">Strata 2013</a> about some of the issues involved in the development of CLAVIN. Here's our submission video:</p>
+
+<iframe width="560" height="315" src="http://www.youtube.com/embed/IlR74bW_Rcc" frameborder="0" allowfullscreen></iframe>
+
+<br /><br />
+
+<p class="copyright">Copyright (C) 2012 <a href="http://www.bericotechnologies.com/">Berico Technologies</a></p>
 
 </body>
 </html>
