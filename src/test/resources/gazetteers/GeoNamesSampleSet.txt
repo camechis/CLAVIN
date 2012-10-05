@@ -1,0 +1,9 @@
+4781530	Reston	Reston	Reston,Рестон	38.96872	-77.3411	P	PPL	US		VA	059			58404	100	102	America/New_York	2011-05-14
+1139905	Ḩowẕ-e Ḩājī Bēg	Howz-e Haji Beg	Hawdze Hajibeg,Howz-e Haji Beg,Howz-e Hajjibeyg,H̱awdze Ḩājibeg,حوض حاجی بېگ,Ḩowẕ-e Ḩājjībeyg,Ḩowẕ-e Ḩājī Bēg	34.90489	64.10312	P	PPL	AF		02			1764	Asia/Kabul	2012-01-16
+2826158	Straßenhaus	Strassenhaus		50.53333	7.51667	A	ADM4	DE		08	00	07138	07138071	1929		306	Europe/Berlin	2010-11-24
+281179	No Man's Land	No Man's Land	Demilitarized Zone,Israel-Jordan Demilitarized Zones,Israel-Jordan Neutral Zone,Neutral Zone	31.83333	34.96667	A	ZNB			00				0	185	Asia/Jerusalem	2008-07-15
+7910633	Chihuahua Desert	Chihuahua Desert		30.54056	-103.83722	T	DSRT	US	US,MX	TX	243			0		1532	America/Chicago	2011-07-29
+281173	Ra's Sālim	Ra's Salim	Ra's Salim,Ra's Sālim,Ras Salem,Rās Sālem,Salim er Ras,Sālim er Rās	31.76667	35.23333	T	SPUR		,PS	00				0		676	Asia/Jerusalem	1994-04-12
+6638544	Murray Canyon	Murray Canyon		-65.75	73	U		AQ						0		-9999		2008-01-20
+4930956	Boston	Boston	BOS,Boston,Bostona,Bostonas,Bostone,Bostonia,Bostono,Bostun,Bostún,Gorad Bostan,Pokekona,Vostoni,bastan,bastana,bo shi dun,boseuteon,bostan,bostana,bosuton,bwstn,bwstwn,bxstan,pastan,Βοστωνη,Βοστώνη,Бостон,Бостън,Горад Бостан,Բոստոն,באסטאן,בוסטון,بوستون,بوسطن,بوسٹن,ܒܘܣܛܘܢ,बॉस्टन,बोस्टन,বস্টন,பாஸ்டன்,బోస్టన్,ಬಾಸ್ಟನ್,ബോസ്റ്റണ്‍,บอสตัน,བོ་སེ་ཊོན།,ბოსტონი,ボストン,波士顿,보스턴	42.35843	-71.05977	P	PPLA	US		MA	025			617594	14	38America/New_York	2011-06-16
+4695535	Gun Barrel City	Gun Barrel City		32.33459	-96.15136	P	PPL	US		TX	213			5672	107	117	America/Chicago	2011-05-14

@@ -1,0 +1,5 @@
+target/**
+indexDirectory/**
+allCountries.zip
+allCountries.txt
+!.gitignore
