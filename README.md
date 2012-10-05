@@ -29,6 +29,11 @@ How to build & use CLAVIN:
 
 8. Run the example program:
 	> `mvn exec:java -Dexec.mainClass="com.berico.clavin.WorkflowDemo" -Dexec.args="-Xmx2g"`
+	
+	If you encounter an error that looks like this:
+	> `... InvocationTargetException: Java heap space ...`
+	
+	set the appropriate environmental variable controlling Maven's memory usage, with something like `export MAVEN_OPTS=-Xmx2g` or similar.
 
 Once that all runs successfully, feel free to modify the CLAVIN source code to suit your needs, or import CLAVIN's functionality into your own program using the .jar file created in Step 7.
 
