@@ -35,7 +35,9 @@ How to build & use CLAVIN:
 	
 	set the appropriate environmental variable controlling Maven's memory usage, with something like `export MAVEN_OPTS=-Xmx2g` or similar.
 
-Once that all runs successfully, feel free to modify the CLAVIN source code to suit your needs, or import CLAVIN's functionality into your own program using the .jar file created in Step 7.
+Once that all runs successfully, feel free to modify the CLAVIN source code to suit your needs, or import CLAVIN's functionality into your own program using the .jar file created in Step 7 (we recommend the clavin-x.x.x-jar-with-dependencies.jar file for ease of use).
+
+**N.B.**: Loading the worldwide gazetteer uses a non-trivial amount of memory. When using CLAVIN in your own programs, if you encounter `Java heap space` errors (like the one described in Step 8), bump up the maximum heap size for your JVM. Allocating 2GB (e.g., `-Xmx2g`) is a good place to start.
 
 License:
 --------
