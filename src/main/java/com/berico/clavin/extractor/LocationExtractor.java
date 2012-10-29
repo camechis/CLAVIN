@@ -1,15 +1,6 @@
 package com.berico.clavin.extractor;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-
-import opennlp.tools.namefind.NameFinderME;
-import opennlp.tools.namefind.TokenNameFinderModel;
-import opennlp.tools.tokenize.TokenizerME;
-import opennlp.tools.tokenize.TokenizerModel;
-import opennlp.tools.util.Span;
 
 /*#####################################################################
  * 
@@ -40,67 +31,17 @@ import opennlp.tools.util.Span;
  *###################################################################*/
 
 /**
- * Extracts location names from unstructured text documents using a
- * named entity recognizer (Apache OpenNLP Name Finder).
+ * Simple interface for location name extraction capabilities to be
+ * provided by third-party named entity recognition tools.
  *
  */
-public class LocationExtractor {
-    
-	// the actual named entity recognizer (NER) object
-	private NameFinderME nameFinder;
-	
-	// used to tokenize plain text into the OpenNLP format
-	private TokenizerME tokenizer;
-	
-	// resource files used by Apache OpenNLP Name Finder
-	private static final String pathToNERModel = "/en-ner-location.bin";
-	private static final String pathToTokenizerModel = "/en-token.bin";
-	
-	/**
-	 * Builds a {@link LocationExtractor} by instantiating the OpenNLP
-	 * Name Finder and Tokenizer.
-	 * 
-	 * @throws IOException 
-	 */
-	public LocationExtractor() throws IOException {
-		nameFinder = new NameFinderME(new TokenNameFinderModel( LocationExtractor.class.getResourceAsStream(pathToNERModel)));
-		tokenizer = new TokenizerME(new TokenizerModel(LocationExtractor.class.getResourceAsStream(pathToTokenizerModel)));
-	}
-	
-	/**
-	 * Extracts location names from unstructured text using the named
-	 * entity recognizer (NER) feature provided by the Apache OpenNLP
-	 * Name Finder.
-	 * 
-	 * @param plainText		Contents of text document
-	 * @return				List of location name Strings
-	 */
-	public List<String> extractLocationNames(String plainText) {
-		
-		// tokenize the text into the required OpenNLP format
-		String[] tokens = tokenizer.tokenize(plainText);
-		
-		// find the location names in the tokenized text
-		Span nameSpans[] = nameFinder.find(tokens);
-		
-		// create the return object
-		List<String> nerResults = new ArrayList<String>();
-		
-		// extract the location names found in the text and add them to
-		// the return object
-		for (Span span : nameSpans) {
-			String locationName = "";
-			for (int i = span.getStart(); i < span.getEnd(); i++)
-				locationName = locationName + tokens[i] + " ";
-			locationName = locationName.trim();
-			nerResults.add(locationName);
-		}
-		
-		// this is necessary to maintain consistent results across
-		// multiple runs on the same data, which is what we want
-		nameFinder.clearAdaptiveData();
-		
-		return nerResults;
-	}
+public interface LocationExtractor {
 
+	/**
+	 * Extracts a list of location names found in unstructured text.
+	 * 
+	 * @param plainText		source of location names to be extracted
+	 * @return
+	 */
+	public List<String> extractLocationNames(String plainText);
 }

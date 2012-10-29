@@ -3,7 +3,7 @@
   
   <groupId>com.berico</groupId>
   <artifactId>clavin</artifactId>
-  <version>0.1.2</version>
+  <version>0.2.0</version>
   <packaging>jar</packaging>
   
   <name>CLAVIN</name>

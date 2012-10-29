@@ -21,7 +21,6 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
-import com.berico.clavin.extractor.LocationExtractor;
 import com.berico.clavin.gazetteer.CountryCode;
 import com.berico.clavin.index.BinarySimilarity;
 import com.berico.clavin.index.WhitespaceLowerCaseAnalyzer;
@@ -83,12 +82,6 @@ public class LocationResolver {
 	// turn off context-based heuristics
 	private int maxContextWindow;
 	
-	// switch for turning on/off fuzzy matching, which is good for text
-	// potentially containing lots of spelling errors (e.g., field
-	// reports) but less than ideal for professionally-written
-	// documents (e.g., news reports)
-	private boolean fuzzy;
-	
 	// custom Lucene sorting based on Lucene match score and the
 	// population of the GeoNames gazetteer entry represented by the
 	// matched index document
@@ -103,12 +96,10 @@ public class LocationResolver {
 	 * @param indexDir				Lucene index directory to be loaded
 	 * @param maxHitDepth			number of candidate matches to consider
 	 * @param maxContextWindow		how much context to consider when resolving
-	 * @param fuzzy					use fuzzy matching?
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	public LocationResolver(File indexDir, int maxHitDepth,
-			int maxContextWindow, boolean fuzzy) throws IOException, ParseException {
+	public LocationResolver(File indexDir, int maxHitDepth, int maxContextWindow) throws IOException, ParseException {
 		
 		// load the Lucene index directory from disk
 		index = FSDirectory.open(indexDir);
@@ -122,7 +113,6 @@ public class LocationResolver {
 		
 		this.maxHitDepth = maxHitDepth;
 		this.maxContextWindow = maxContextWindow;
-		this.fuzzy = fuzzy;
 		
 		// run an initial throw-away query just to "prime the pump" for
 		// the cache, so we can accurately measure performance speed
@@ -136,11 +126,12 @@ public class LocationResolver {
 	 * in the Lucene index for a given location name.
 	 * 
 	 * @param locationName		name of the geographic location to be resolved
+	 * @param fuzzy				switch for turning on/off fuzzy matching
 	 * @return					list of ResolvedLocation objects as potential matches
 	 * @throws IOException
 	 * @throws ParseException
 	 */
-	private List<ResolvedLocation> getCandidateMatches(String locationName)
+	private List<ResolvedLocation> getCandidateMatches(String locationName, boolean fuzzy)
 			throws IOException, ParseException{
 		
 		// santize the query input
@@ -150,7 +141,7 @@ public class LocationResolver {
 	  		// Lucene query used to look for matches based on the
 			// "indexName" field
 	  		Query q = new AnalyzingQueryParser(Version.LUCENE_40,
-	  				"indexName", indexAnalyzer).parse(sanitizedLocationName);
+	  				"indexName", indexAnalyzer).parse("\"" + sanitizedLocationName + "\"");
 	  		
 	  		// collect all the hits up to maxHits, and sort them based
 	  		// on Lucene match score and population for the associated
@@ -369,12 +360,13 @@ public class LocationResolver {
      * heuristics to select the best match for each by calling
      * {@link LocationResolver#pickBestCandidates(List<List<ResolvedLocation>>)}.
      * 
-     * @param locations 		ist of location names to be resolved
+     * @param locations 		list of location names to be resolved
+     * @param fuzzy				switch for turning on/off fuzzy matching
      * @return 					list of {@link ResolvedLocation} objects
      * @throws ParseException 
      * @throws IOException 
      **/
-    public List<ResolvedLocation> resolveLocations(List<String> locations) throws IOException, ParseException {
+    public List<ResolvedLocation> resolveLocations(List<String> locations, boolean fuzzy) throws IOException, ParseException {
     	
     	// forgetting something?
     	if (locations == null)
@@ -388,7 +380,7 @@ public class LocationResolver {
 			// loop through all the location names
 			for (String location : locations) {
 				// get all possible matches
-				List<ResolvedLocation> candidates = getCandidateMatches(location);
+				List<ResolvedLocation> candidates = getCandidateMatches(location, fuzzy);
 				
 				// if we found some possible matches, save them
 				if (candidates.size() > 0)
@@ -421,7 +413,7 @@ public class LocationResolver {
 			for (String location : locations) {
 				// choose the top-sorted candidate for each individual
 				// location name
-				candidateLocations = getCandidateMatches(location);
+				candidateLocations = getCandidateMatches(location, fuzzy);
 				
 				// if a match was found, add it to the return list
 				if (candidateLocations.size() > 0)

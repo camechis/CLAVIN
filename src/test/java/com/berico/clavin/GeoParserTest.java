@@ -1,13 +1,14 @@
 package com.berico.clavin;
 
-import java.io.File;
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
 import java.util.List;
 
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.junit.Test;
 
 import com.berico.clavin.resolver.ResolvedLocation;
-import com.berico.clavin.util.TextUtils;
 
 /*#####################################################################
  * 
@@ -33,43 +34,46 @@ import com.berico.clavin.util.TextUtils;
  * 
  * ====================================================================
  * 
- * WorkflowDemo.java
+ * GeoParserTest.java
  * 
  *###################################################################*/
 
 /**
- * Quick example showing how to use CLAVIN's capabilities.
- * 
+ * Checks output produced by {@link GeoParser}, which is more of an
+ * integration test than a unit test.
+ *
  */
-public class WorkflowDemo {
+public class GeoParserTest {
+	
+	// expected geonameID numbers for given location names
+	int UNITED_STATES = 6252001;
+	int VERMONT = 5242283;
+	int MASSACHUSETTS = 6254926;
 
 	/**
-	 * Run this after installing & configuring CLAVIN to get a sense of
-	 * how to use it.
-	 * 
-	 * @param args				not used
+	 * Ensures we're getting good output from the end-to-end GeoParser
+	 * process.
 	 * @throws ParseException 
 	 * @throws IOException 
 	 */
-	public static void main(String[] args) throws IOException, ParseException {
-		
-		// Instantiate the CLAVIN GeoParser
+	@Test
+	public void testParse() throws IOException, ParseException {
+		// instantiate the CLAVIN GeoParser
 		GeoParser parser = new GeoParser();
 		
-		// Unstructured text file about Somalia to be geoparsed
-		File inputFile = new File("src/test/resources/sample-docs/Somalia-doc.txt");
+		// sample text to be geoparsed
+		String inputText = "Calvin Coolidge was the 30th president " +
+				"of the United States. He was born in Vermont and " +
+				"died in Massachusetts.";
 		
-		// Grab the contents of the text file as a String
-		String inputString = TextUtils.fileToString(inputFile);
+		// parse location names in the text into geographic entities
+		List<ResolvedLocation> resolvedLocations = parser.parse(inputText);
 		
-		// Parse location names in the text into geographic entities
-		List<ResolvedLocation> resolvedLocations = parser.parse(inputString);
-		
-		// Display the ResolvedLocations found for the location names
-		for (ResolvedLocation resolvedLocation : resolvedLocations)
-			System.out.println(resolvedLocation);
-		
-		// And we're done...
-		System.out.println("\n\"That's all folks!\"");
+		// check the output
+		assertEquals("Wrong number of ResolvedLocations", 3, resolvedLocations.size());
+		assertEquals("Incorrect ResolvedLocation", UNITED_STATES, resolvedLocations.get(0).geoname.geonameID);
+		assertEquals("Incorrect ResolvedLocation", VERMONT, resolvedLocations.get(1).geoname.geonameID);
+		assertEquals("Incorrect ResolvedLocation", MASSACHUSETTS, resolvedLocations.get(2).geoname.geonameID);
 	}
+
 }

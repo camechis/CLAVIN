@@ -71,7 +71,7 @@ public class LocationResolverTest {
 	public void setUp() throws IOException, ParseException {
 		// indexDirectory = new File("./src/test/resources/indices/GeoNamesSampleIndex");
 		indexDirectory = new File("./IndexDirectory");
-		resolverNoHeuristics = new LocationResolver(indexDirectory, 1, 1, true);
+		resolverNoHeuristics = new LocationResolver(indexDirectory, 1, 1);
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class LocationResolverTest {
 	public void testResolveLocations() throws IOException, ParseException {
 		String[] locations = {"Reston", "reston", "RESTON", "Рестон", "Straßenhaus"};
 		
-		resolvedLocations = resolverNoHeuristics.resolveLocations(asList(locations));
+		resolvedLocations = resolverNoHeuristics.resolveLocations(asList(locations), true);
 		
 		assertNotNull("Null results list received from LocationResolver", resolvedLocations);
 		assertFalse("Empty results list received from LocationResolver", resolvedLocations.isEmpty());
@@ -100,13 +100,13 @@ public class LocationResolverTest {
 		// test empty input
 		String[] noLocations = {};
 		
-		resolvedLocations = resolverNoHeuristics.resolveLocations(asList(noLocations));
+		resolvedLocations = resolverNoHeuristics.resolveLocations(asList(noLocations), true);
 		
 		assertNotNull("Null results list received from LocationResolver", resolvedLocations);
 		assertTrue("Non-empty results from LocationResolver on empty input", resolvedLocations.isEmpty());
 		
 		// test null input
-		resolvedLocations = resolverNoHeuristics.resolveLocations(null);
+		resolvedLocations = resolverNoHeuristics.resolveLocations(null, true);
 		
 		assertNotNull("Null results list received from LocationResolver", resolvedLocations);
 		assertTrue("Non-empty results from LocationResolver on empty input", resolvedLocations.isEmpty());
@@ -125,7 +125,7 @@ public class LocationResolverTest {
 				"Dallas/Fort Worth Airport", "New Delhi/Chennai", "Falkland ] Islands", "Baima ] County",
 				"MUSES \" City Hospital", "North \" Carolina State"};
 		
-		resolvedLocations = resolverNoHeuristics.resolveLocations(asList(locations));
+		resolvedLocations = resolverNoHeuristics.resolveLocations(asList(locations), true);
 		
 		// if no exceptions are thrown, the test is assumed to have succeeded
 	}
@@ -141,7 +141,7 @@ public class LocationResolverTest {
 	public void testFuzzyMatching() throws IOException, ParseException {
 		String[] locations = {"Bostonn", "Reston12", "Bostn", "Straßenha", "Straßenhaus Airport", "Gun Barrel"};
 		
-		resolvedLocations = resolverNoHeuristics.resolveLocations(asList(locations));
+		resolvedLocations = resolverNoHeuristics.resolveLocations(asList(locations), true);
 		
 		assertEquals("LocationResolver failed on extra char", BOSTON_MA, resolvedLocations.get(0).geoname.geonameID);
 		assertEquals("LocationResolver failed on extra chars", RESTON_VA, resolvedLocations.get(1).geoname.geonameID);

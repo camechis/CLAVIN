@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
@@ -36,7 +37,7 @@ import com.berico.clavin.util.TextUtils;
  * 
  * ====================================================================
  * 
- * LocationExtractorTest.java
+ * ApacheExtractorTest.java
  * 
  *###################################################################*/
 
@@ -45,26 +46,27 @@ import com.berico.clavin.util.TextUtils;
  * by Apache OpenNLP Name Finder.
  * 
  */
-public class LocationExtractorTest {
+public class ApacheExtractorTest {
 
 	/**
 	 * Ensures we're getting good responses from the
-	 * {@link LocationExtractor}, and that we can properly tag multiple
+	 * {@link ApacheExtractor}, and that we can properly tag multiple
 	 * documents with the same instance.
+	 * @throws IOException 
 	 */
 	@Test
-	public void testExtractLocationNames() throws Exception {
-		LocationExtractor extractor = new LocationExtractor();
+	public void testExtractLocationNames() throws IOException {
+		ApacheExtractor extractor = new ApacheExtractor();
 		File inputFile = new File("src/test/resources/sample-docs/Somalia-doc.txt");
 		String inputString = TextUtils.fileToString(inputFile);
 		List<String> locationNames1 = extractor.extractLocationNames(inputString);
 		
-		assertNotNull("Null LOCATION list received from SimpleTagger.", locationNames1);
-		assertFalse("Empty LOCATION list received from SimpleTagger.", locationNames1.isEmpty());
-		assertTrue("SimpleTagger choked/quit after first LOCATION.", locationNames1.size() > 1);
+		assertNotNull("Null location name list received from extractor.", locationNames1);
+		assertFalse("Empty location name list received from extractor.", locationNames1.isEmpty());
+		assertTrue("Extractor choked/quit after first LOCATION.", locationNames1.size() > 1);
 		
 		List<String> locationNames2 = extractor.extractLocationNames(inputString);		
-		assertEquals("Different NER results for subsequent identical document.", locationNames1, locationNames2);
+		assertEquals("Different extractor results for subsequent identical document.", locationNames1, locationNames2);
 	}
 	
 }

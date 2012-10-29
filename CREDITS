@@ -33,3 +33,45 @@ Other contributors include:
 	Kirill Orlov
 	Jason Tibbetts
 	Matt Woytowitz
+
+====================================================================
+
+CLAVIN makes use of the following open source software projects,
+and we are deeply appreciative for the contributions of their
+respective developers:
+
+Apache Commons -- http://commons.apache.org
+Apache log4j -- http://logging.apache.org/log4j/
+Apache Lucene -- http://lucene.apache.org
+Apache OpenNLP -- http://opennlp.apache.org
+JUnit -- http://www.junit.org
+
+====================================================================
+
+CLAVIN also makes use of the following open source data sets, and we
+are equally appreciative for the creators of these resources:
+
+********************************************************************
+
+GeoNames.org
+
+The GeoNames geographical database is available for download free of
+charge under a creative commons attribution license. It contains over
+10 million geographical names and consists of over 8 million unique
+features whereof 2.8 million populated places and 5.5 million alternate
+names. GeoNames is integrating geographical data such as names of
+places in various languages, elevation, population and others from
+various sources. Users may manually edit, correct and add new names
+using a user friendly wiki interface.
+
+Marc Wick, Founder: marc@geonames.org
+Christophe Boutreux, developer (http://www.boutreux.com/)
+
+This work is licensed under a Creative Commons Attribution 3.0 License,
+see http://creativecommons.org/licenses/by/3.0/
+
+The Data is provided "as is" without warranty or any representation of
+accuracy, timeliness or completeness.
+
+********************************************************************
+

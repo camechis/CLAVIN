@@ -38,14 +38,16 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-	com.berico.clavin.extractor.LocationExtractorTest.class,
+	com.berico.clavin.extractor.ApacheExtractorTest.class,
 	com.berico.clavin.gazetteer.GeoNameTest.class,
 	com.berico.clavin.index.BinarySimilarityTest.class,
 	com.berico.clavin.resolver.LocationResolverTest.class,
 	com.berico.clavin.resolver.LocationResolverHeuristicsTest.class,
 	com.berico.clavin.util.DamerauLevenshteinTest.class,
 	com.berico.clavin.util.ListUtilsTest.class,
-	com.berico.clavin.util.TextUtilsTest.class
+	com.berico.clavin.util.TextUtilsTest.class,
+	// this one comes last as it's more of an integration test
+	com.berico.clavin.GeoParserTest.class
 })
 public class AllTestsSuite {
 	// THIS CLASS INTENTIONALLY LEFT BLANK
